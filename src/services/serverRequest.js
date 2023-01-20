@@ -1,5 +1,3 @@
-
-
 export default class ServerRequest {
   #apiKey =  'f0cb37149eb24cd7b918361c5f7afa9e';
 
@@ -14,8 +12,8 @@ export default class ServerRequest {
     return body;
   }
       
-  searchMovies() {
-    return this.getResource('api_key=f0cb37149eb24cd7b918361c5f7afa9e&language=en-US&query=return&page=1&include_adult=false')
+  searchMovies(search) {
+    return this.getResource(`api_key=f0cb37149eb24cd7b918361c5f7afa9e&language=en-US&query=${search}&page=1&include_adult=false`)
       .then((body) => {
         const oldArray = body.results;
         const newArray = oldArray.filter((el, index) => index < 6 );
@@ -24,6 +22,6 @@ export default class ServerRequest {
   }
 }
 
-const newClass = new ServerRequest();
 
-newClass.searchMovies().then((res) => console.log(res));
+
+// newClass.searchMovies().then((res) => console.log(res));

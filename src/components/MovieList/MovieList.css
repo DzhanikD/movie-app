@@ -4,3 +4,9 @@
     gap: 35px;
     padding: 21px 32px;
 }
+
+:where(.css-dev-only-do-not-override-1i9hnpv).ant-spin-spinning {
+    display: block;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
