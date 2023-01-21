@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import { Offline} from 'react-detect-offline';
+import {Alert} from 'antd';
 
 import Head from './components/Head';
 import SearchPanel from './components/SearchPanel';
@@ -13,18 +15,31 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <div className='movie-app'>
-      <header className='header'>
-        <Head />
-        <SearchPanel />
-      </header>
-      <main className='main'>
-        <MovieList/>
-      </main>
-      <footer className='footer'>
-        <Pagination/>
-      </footer>
-    </div>;
+    return (
+      <>
+        <Offline>
+          <Alert
+            message="Warning"
+            description="Сеть пропала! Проверьте ваше интернет-соединение"
+            type="warning"
+            showIcon
+            closable
+          />
+        </Offline>
+        <div className='movie-app'>
+          
+          <header className='header'>
+            <Head />
+            <SearchPanel />
+          </header>
+          <main className='main'>
+            <MovieList/>
+          </main>
+          <footer className='footer'>
+            <Pagination/>
+          </footer>
+        </div>
+      </>);
   }
 }
 
