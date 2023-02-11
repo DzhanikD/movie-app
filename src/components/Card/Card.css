@@ -118,15 +118,22 @@
 @media screen and (max-width: 560px) {
   .card {
     padding: 6px 10px 0 10px;
+    position: relative;
+    height: 245px;
   }
 
   .card__details {
-    padding-top: 0px;
-    padding-left: 13px;
+    padding: 0px;
+    padding-bottom: 10px;
   }
 
   .card__image {
     max-width: 60px;
+    position: absolute;
+  }
+
+  .card__header {
+    padding-left: 75px;
   }
 }
 
