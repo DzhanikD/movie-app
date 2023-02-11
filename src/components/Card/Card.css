@@ -1,148 +1,137 @@
 .card {
-    height: 281px; 
-    box-shadow: 5px 0px 10px 0px rgba(146, 145, 145, 0.275);
-    display: flex;
-    overflow: hidden;
+  height: 281px;
+  box-shadow: 5px 0px 10px 0px rgba(146, 145, 145, 0.275);
+  display: flex;
+  overflow: hidden;
 }
 
 .card__details {
-    padding: 12px 16px;
-    display: flex;
-    flex-direction: column;
-    flex-basis: 454px;
-    flex-grow: 2;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 454px;
+  flex-grow: 2;
 }
 
 .card__title {
-    margin: 0;
+  margin: 0;
 }
 
 .ant-typography {
-    font-family: 'Inter', sans-serif;
-  }
-  
-h2:where(.css-dev-only-do-not-override-1i9hnpv).ant-typography {
-    margin-bottom: 7px;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 28px;
-  }
+  font-family: 'Inter';
+}
 
 .card__date {
-    margin-bottom: 7px;
+  margin-bottom: 7px;
+  font-family: 'Inter';
+  font-size: 12px;
+  line-height: 22px;
+  color: #827e7e;
 }
-
-:where(.css-dev-only-do-not-override-1i9hnpv).ant-typography:where(.css-dev-only-do-not-override-1i9hnpv).ant-typography-secondary {
-    font-size: 12px;
-    line-height: 22px;
-    color: #827E7E;
-  }
 
 .card__genre {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 7px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 7px;
+  flex-wrap: wrap;
 }
 
-:where(.css-dev-only-do-not-override-1i9hnpv).ant-typography code {
-    background: #FAFAFA;
-    border: 1px solid #D9D9D9;
-    border-radius: 2px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 15px;
-    color: rgba(0, 0, 0, 0.65);
-    vertical-align: middle;
-    margin: 0;
-}
-
-.card__description {
-    /* width: 228px; */
+.card__span {
+  background: #fafafa;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: rgba(0, 0, 0, 0.65);
+  vertical-align: middle;
+  margin: 0;
+  padding: 2px 4px;
 }
 
 .card__rating {
-    margin-top: auto;
-    margin-left: auto;
+  margin-top: auto;
 }
 
-:where(.css-dev-only-do-not-override-1i9hnpv).ant-typography {
-    font-size: 12px;
-    line-height: 22px;
-    color: black;
+.card__text {
+  font-family: 'Inter';
+  font-size: 12px;
+  line-height: 22px;
+  margin: 0;
 }
 
-div:where(.css-dev-only-do-not-override-1i9hnpv).ant-typography {
-    margin: 0;
+.css-dev-only-do-not-override-1i9hnpv.ant-rate .ant-rate-star:not(:last-child) {
+  margin-inline-end: 5px;
 }
 
-:where(.css-dev-only-do-not-override-1i9hnpv).ant-rate .ant-rate-star:not(:last-child) {
-    margin-inline-end: 3px;
+.css-dev-only-do-not-override-1i9hnpv.ant-rate {
+  font-size: 18px;
 }
 
 .card__title {
-    display: flex;
-    justify-content: space-between;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  margin: 0;
+}
+
+.card__wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
 }
 
 .card__current-rating {
-    width: 30px;
-    height: 30px;
-    border: 2px solid;
-    border-radius: 50%;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400; */
-    font-size: 12px;
-    /* line-height: 22px; */
+  width: 30px;
+  height: 30px;
+  border: 2px solid;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
 }
 
 .card__color-red {
-    border-color: #E90000;
+  border-color: #e90000;
 }
 
 .card__color-orange {
-    border-color: #E97E00;
+  border-color: #e97e00;
 }
 
 .card__color-yellow {
-    border-color: #E9D100;
+  border-color: #e9d100;
 }
 
 .card__color-green {
-    border-color: #66E900;
+  border-color: #66e900;
 }
 
 .card__image {
-    width: 100%;
-    max-width: 190px;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
+  width: 100%;
+  max-width: 190px;
 }
-
 
 @media screen and (max-width: 560px) {
-    .card {
-       padding: 6px 10px 0 10px;
-    }
+  .card {
+    padding: 6px 10px 0 10px;
+  }
 
-    .card__details {
-        padding-top: 0px;
-        padding-left: 13px;
-    }
+  .card__details {
+    padding-top: 0px;
+    padding-left: 13px;
+  }
 
-    .card__image {
-        max-width: 60px;
-    }
-
-    .card__description {
-        transform: translate(-80px);
-    }
+  .card__image {
+    max-width: 60px;
+  }
 }
 
+@media screen and (max-width: 1008px) {
+  .card__rating {
+    margin-left: auto;
+  }
+}
