@@ -2,11 +2,25 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 35px;
-    padding: 21px 32px;
+    padding-top: 21px;
+    padding-bottom: 37px;
 }
 
 :where(.css-dev-only-do-not-override-1i9hnpv).ant-spin-spinning {
     display: block;
     padding-top: 30px;
     padding-bottom: 30px;
+}
+
+@media screen and (max-width: 1009px) {
+    .movie-list {
+        grid-template-columns: 1fr;
+        justify-content: center;
+     }
+}
+
+@media screen and (max-width: 600px) {
+    .movie-list {
+        padding-top: 10px;
+    }
 }

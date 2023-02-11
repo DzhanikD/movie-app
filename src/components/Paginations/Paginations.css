@@ -1,0 +1,9 @@
+.footer__pagination {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 18px;
+}
+
+.footer__pagination--hidden {
+    display: none;
+}

@@ -1,0 +1,11 @@
+.search-panel {
+    display: flex;
+    justify-content: center;
+}
+
+.search-panel__input {
+    height: 40px;
+    font-family: 'Inter';
+    font-size: 16px;
+    line-height: 22px;
+}
