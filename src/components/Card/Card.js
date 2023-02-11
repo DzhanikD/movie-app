@@ -100,7 +100,13 @@ export default class Card extends React.Component {
                 <p className="card__text">{this.ApdateWord(overview)} ...</p>
               </div>
               <div ref={this.heightRating} className="card__rating">
-                <Rate allowHalf value={ratedIdMovies[id]} count={10} onChange={(ev) => onChangeRating(ev, id)} />
+                <Rate
+                  className="rate"
+                  allowHalf
+                  value={ratedIdMovies[id]}
+                  count={10}
+                  onChange={(ev) => onChangeRating(ev, id)}
+                />
               </div>
             </div>
           </div>

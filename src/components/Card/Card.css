@@ -62,11 +62,18 @@
 }
 
 .css-dev-only-do-not-override-1i9hnpv.ant-rate .ant-rate-star:not(:last-child) {
-  margin-inline-end: 5px;
 }
 
-.css-dev-only-do-not-override-1i9hnpv.ant-rate {
+/* .css-dev-only-do-not-override-1i9hnpv.ant-rate {
   font-size: 18px;
+} */
+
+.rate {
+  font-size: 18px;
+}
+
+.ant-rate .ant-rate-star:not(:last-child) {
+  margin-inline-end: 5px;
 }
 
 .card__title {
