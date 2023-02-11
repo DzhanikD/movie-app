@@ -135,6 +135,14 @@
   .card__header {
     padding-left: 75px;
   }
+
+  .card__wrapper {
+    margin-bottom: 0;
+  }
+
+  .card__genre {
+    margin-bottom: 13px;
+  }
 }
 
 @media screen and (max-width: 1008px) {

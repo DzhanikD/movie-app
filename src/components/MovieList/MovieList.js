@@ -5,7 +5,7 @@ import { Spin, Alert } from 'antd';
 import Card from '../Card';
 import './MovieList.css';
 
-function MovieList({ body, loading, error, onChangeRating, ratedIdMovies, notFound, widthWindow }) {
+function MovieList({ body, loading, error, onChangeRating, ratedIdMovies, notFound, widthWindow, notRatedFilms }) {
   const content =
     !loading && !error && !notFound ? (
       <div className="movie-list">
@@ -39,6 +39,9 @@ function MovieList({ body, loading, error, onChangeRating, ratedIdMovies, notFou
       showIcon
     />
   ) : null;
+  const notRatedMessage = notRatedFilms ? (
+    <Alert message="Оцененных фильмов не найдено" description="Вы еще не оценили ни одного фильма" showIcon />
+  ) : null;
 
   return (
     <>
@@ -46,6 +49,7 @@ function MovieList({ body, loading, error, onChangeRating, ratedIdMovies, notFou
       {spinner}
       {errorMessage}
       {notFoundMessage}
+      {notRatedMessage}
     </>
   );
 }
