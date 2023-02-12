@@ -46,13 +46,21 @@ export default class App extends React.Component {
       this.debounceUpdateMovies();
     }
 
-    if (page !== prevState.page && activeKey === 'search') {
+    if (page !== prevState.page && activeKey === 'search' && activeKey === prevState.activeKey) {
       this.updateMovies();
     }
 
-    if (page !== prevState.page && activeKey === 'rated') {
+    if (page !== prevState.page && activeKey === 'rated' && activeKey === prevState.activeKey) {
       this.ratedMovies();
     }
+
+    if (activeKey !== prevState.activeKey && activeKey === 'rated') {
+      this.ratedMovies();
+    }
+    if (activeKey !== prevState.activeKey && activeKey === 'search') {
+      this.updateMovies();
+    }
+
     if (guestSessionId !== prevState.guestSessionId) {
       this.ratedObjFilms();
       this.updateMovies();
@@ -149,42 +157,28 @@ export default class App extends React.Component {
     const { page, guestSessionId } = this.state;
     this.serverRequest
       .showRatedMovies(page, guestSessionId)
-      .then((body) =>
-        this.setState({
-          body: body.results,
-          loading: false,
-          total: body.total_results,
-          activeKey: 'rated',
-        })
-      )
+      .then((body) => {
+        if (body.total_results === 0) {
+          this.setState({ notRatedFilms: true, loading: false, activeKey: 'rated' });
+        } else {
+          this.setState({
+            body: body.results,
+            loading: false,
+            total: body.total_results,
+            activeKey: 'rated',
+          });
+        }
+      })
       .catch(this.onError);
   };
 
   onChangeTabs = (key) => {
-    const { page, guestSessionId } = this.state;
     if (key === 'rated') {
-      this.loadingSpinner();
-      this.serverRequest
-        .showRatedMovies(page, guestSessionId)
-        .then((body) => {
-          if (body.total_results === 0) {
-            this.setState({ notRatedFilms: true, loading: false, activeKey: 'rated' });
-          } else {
-            this.setState({
-              body: body.results,
-              loading: false,
-              total: body.total_results,
-              page: 1,
-              activeKey: 'rated',
-            });
-          }
-        })
-        .catch(this.onError);
+      this.setState({ activeKey: 'rated', page: 1 });
     }
 
     if (key === 'search') {
-      this.loadingSpinner();
-      this.setState({ activeKey: 'search', page: 1, notRatedFilms: false }, this.updateMovies());
+      this.setState({ activeKey: 'search', page: 1, notRatedFilms: false });
     }
   };
 
