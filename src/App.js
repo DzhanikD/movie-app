@@ -43,21 +43,14 @@ export default class App extends React.Component {
     const { value, page, activeKey, guestSessionId } = this.state;
 
     if (value !== prevState.value) {
-      console.log('я дидапдейт из if (value !== prevState.value) ');
       this.debounceUpdateMovies();
     }
 
     if (page !== prevState.page && activeKey === 'search') {
-      console.log(
-        'я дидапдейт из условия page !== prevState.page && activeKey === search - то вызываем this.updateMovies();'
-      );
       this.updateMovies();
     }
 
     if (page !== prevState.page && activeKey === 'rated') {
-      console.log(
-        'я дидапдейт из условия page !== prevState.page && activeKey === rated - то вызываем this.ratedMovies();;'
-      );
       this.ratedMovies();
     }
     if (guestSessionId !== prevState.guestSessionId) {
@@ -175,7 +168,6 @@ export default class App extends React.Component {
         .showRatedMovies(page, guestSessionId)
         .then((body) => {
           if (body.total_results === 0) {
-            console.log('если пришла пустая длинна из оцененных масивов, тогда заглушка');
             this.setState({ notRatedFilms: true, loading: false, activeKey: 'rated' });
           } else {
             this.setState({
@@ -184,7 +176,6 @@ export default class App extends React.Component {
               total: body.total_results,
               page: 1,
               activeKey: 'rated',
-              // notRatedFilms: false,
             });
           }
         })
@@ -262,6 +253,7 @@ export default class App extends React.Component {
                   current={page}
                   total={total}
                   loading={loading}
+                  notRatedFilms={notRatedFilms}
                 />
               </footer>
             </div>
