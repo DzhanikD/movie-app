@@ -7,7 +7,7 @@ import './MovieList.css';
 
 function MovieList({ body, loading, error, onChangeRating, ratedIdMovies, notFound, widthWindow, notRatedFilms }) {
   const content =
-    !loading && !error && !notFound ? (
+    !loading && !error && !notFound && !notRatedFilms ? (
       <div className="movie-list">
         {body.map((el) => (
           <Card

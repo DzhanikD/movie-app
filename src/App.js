@@ -41,19 +41,23 @@ export default class App extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { value, page, activeKey, guestSessionId } = this.state;
-    if (value !== prevState.value) {
-      this.debounceUpdateMovies();
-    }
 
     if (value !== prevState.value) {
+      console.log('я дидапдейт из if (value !== prevState.value) ');
       this.debounceUpdateMovies();
     }
 
     if (page !== prevState.page && activeKey === 'search') {
+      console.log(
+        'я дидапдейт из условия page !== prevState.page && activeKey === search - то вызываем this.updateMovies();'
+      );
       this.updateMovies();
     }
 
     if (page !== prevState.page && activeKey === 'rated') {
+      console.log(
+        'я дидапдейт из условия page !== prevState.page && activeKey === rated - то вызываем this.ratedMovies();;'
+      );
       this.ratedMovies();
     }
     if (guestSessionId !== prevState.guestSessionId) {
@@ -170,24 +174,26 @@ export default class App extends React.Component {
       this.serverRequest
         .showRatedMovies(page, guestSessionId)
         .then((body) => {
-          if (body.results.length === 0) {
-            this.setState({ notRatedFilms: true, loading: false });
+          if (body.total_results === 0) {
+            console.log('если пришла пустая длинна из оцененных масивов, тогда заглушка');
+            this.setState({ notRatedFilms: true, loading: false, activeKey: 'rated' });
+          } else {
+            this.setState({
+              body: body.results,
+              loading: false,
+              total: body.total_results,
+              page: 1,
+              activeKey: 'rated',
+              // notRatedFilms: false,
+            });
           }
-          this.setState({
-            body: body.results,
-            loading: false,
-            total: body.total_results,
-            page: 1,
-            activeKey: 'rated',
-          });
         })
         .catch(this.onError);
     }
 
     if (key === 'search') {
       this.loadingSpinner();
-      this.setState({ activeKey: 'search', page: 1, notRatedFilms: false });
-      this.updateMovies();
+      this.setState({ activeKey: 'search', page: 1, notRatedFilms: false }, this.updateMovies());
     }
   };
 
