@@ -167,13 +167,13 @@ export default class App extends React.Component {
       .catch(this.onError);
   };
 
-  onChangeTabs = (key, oldPageSearch, oldPageRated) => {
+  onChangeTabs = (key, oldPage) => {
     if (key === 'rated') {
-      this.setState({ activeKey: 'rated', page: oldPageRated });
+      this.setState({ activeKey: 'rated', page: oldPage });
     }
 
     if (key === 'search') {
-      this.setState({ activeKey: 'search', page: oldPageSearch });
+      this.setState({ activeKey: 'search', page: oldPage });
     }
   };
 

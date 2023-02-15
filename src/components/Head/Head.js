@@ -6,21 +6,14 @@ import SearchPanel from '../SearchPanel';
 
 export default class Head extends React.Component {
   state = {
-    oldPageSearch: 1,
-    oldPageRated: 1,
+    oldPage: 1,
   };
 
-  onChangeTabsss(key) {
-    const { onChangeTabs, page, activeKey } = this.props;
-    const { oldPageSearch, oldPageRated } = this.state;
-    if (activeKey === 'search') {
-      this.setState({ oldPageSearch: page });
-    }
-
-    if (activeKey === 'rated') {
-      this.setState({ oldPageRated: page });
-    }
-    onChangeTabs(key, oldPageSearch, oldPageRated);
+  onClickTabs(key) {
+    const { onChangeTabs, page } = this.props;
+    const { oldPage } = this.state;
+    this.setState({ oldPage: page });
+    onChangeTabs(key, oldPage);
   }
 
   render() {
@@ -28,7 +21,7 @@ export default class Head extends React.Component {
     return (
       <Tabs
         activeKey={activeKey}
-        onChange={(key) => this.onChangeTabsss(key)}
+        onChange={(key) => this.onClickTabs(key)}
         centered
         items={[
           {
