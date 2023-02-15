@@ -17,10 +17,7 @@ export default class ServerRequest {
       `${this.#apiBase}/3/search/movie?api_key=${
         this.#apiKey
       }&language=en-US&query=${value}&page=${page}&include_adult=false`
-    ).then((body) => {
-      const oldArray = body;
-      return oldArray;
-    });
+    ).then((body) => body);
   }
 
   async showRatedMovies(page, guestSessionId) {
@@ -59,7 +56,7 @@ export default class ServerRequest {
   }
 
   async postResourse(obj, id, guestSessionId) {
-    const res = await fetch(
+    const result = await fetch(
       `${this.#apiBase}/3/movie/${id}/rating?api_key=${this.#apiKey}&guest_session_id=${guestSessionId}`,
       {
         method: 'POST',
@@ -69,8 +66,7 @@ export default class ServerRequest {
         body: JSON.stringify(obj),
       }
     );
-    const body = await res;
-    return body;
+    return result;
   }
 
   async testGuestSession(guest) {

@@ -30,7 +30,6 @@ export default class App extends React.Component {
     guestSessionId: null,
     notFound: false,
     widthWindow: 0,
-    notRatedFilms: false,
   };
 
   componentDidMount() {
@@ -158,27 +157,23 @@ export default class App extends React.Component {
     this.serverRequest
       .showRatedMovies(page, guestSessionId)
       .then((body) => {
-        if (body.total_results === 0) {
-          this.setState({ notRatedFilms: true, loading: false, activeKey: 'rated' });
-        } else {
-          this.setState({
-            body: body.results,
-            loading: false,
-            total: body.total_results,
-            activeKey: 'rated',
-          });
-        }
+        this.setState({
+          body: body.results,
+          loading: false,
+          total: body.total_results,
+          activeKey: 'rated',
+        });
       })
       .catch(this.onError);
   };
 
-  onChangeTabs = (key) => {
+  onChangeTabs = (key, oldPageSearch, oldPageRated) => {
     if (key === 'rated') {
-      this.setState({ activeKey: 'rated', page: 1 });
+      this.setState({ activeKey: 'rated', page: oldPageRated });
     }
 
     if (key === 'search') {
-      this.setState({ activeKey: 'search', page: 1, notRatedFilms: false });
+      this.setState({ activeKey: 'search', page: oldPageSearch });
     }
   };
 
@@ -205,7 +200,6 @@ export default class App extends React.Component {
       guestSessionId,
       notFound,
       widthWindow,
-      notRatedFilms,
     } = this.state;
     return (
       <>
@@ -222,7 +216,12 @@ export default class App extends React.Component {
           <div className="movie-app">
             <div className="container">
               <header className="header">
-                <Head onChangeInput={this.onChangeInput} onChangeTabs={this.onChangeTabs} activeKey={activeKey} />
+                <Head
+                  onChangeInput={this.onChangeInput}
+                  onChangeTabs={this.onChangeTabs}
+                  activeKey={activeKey}
+                  page={page}
+                />
               </header>
               <GenresProvider value={genres}>
                 <main className="main">
@@ -236,7 +235,7 @@ export default class App extends React.Component {
                     guestSessionId={guestSessionId}
                     notFound={notFound}
                     widthWindow={widthWindow}
-                    notRatedFilms={notRatedFilms}
+                    activeKey={activeKey}
                   />
                 </main>
               </GenresProvider>
@@ -247,7 +246,8 @@ export default class App extends React.Component {
                   current={page}
                   total={total}
                   loading={loading}
-                  notRatedFilms={notRatedFilms}
+                  activeKey={activeKey}
+                  page={page}
                 />
               </footer>
             </div>

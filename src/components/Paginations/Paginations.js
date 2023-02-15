@@ -1,10 +1,10 @@
 import { Pagination } from 'antd';
 import './Paginations.css';
 
-function Paginations({ onChangePagination, current, total, loading, notFound, notRatedFilms }) {
+function Paginations({ onChangePagination, current, total, loading, notFound }) {
   let footerClassName = 'footer__pagination';
 
-  if (loading || notFound || notRatedFilms) {
+  if (loading || notFound) {
     footerClassName += ' footer__pagination--hidden';
   }
 

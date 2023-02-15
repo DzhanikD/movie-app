@@ -5,9 +5,9 @@ import { Spin, Alert } from 'antd';
 import Card from '../Card';
 import './MovieList.css';
 
-function MovieList({ body, loading, error, onChangeRating, ratedIdMovies, notFound, widthWindow, notRatedFilms }) {
+function MovieList({ body, loading, error, onChangeRating, ratedIdMovies, notFound, widthWindow, activeKey }) {
   const content =
-    !loading && !error && !notFound && !notRatedFilms ? (
+    !loading && !error && !notFound ? (
       <div className="movie-list">
         {body.map((el) => (
           <Card
@@ -29,19 +29,20 @@ function MovieList({ body, loading, error, onChangeRating, ratedIdMovies, notFou
     ) : null;
   const spinner = loading ? <Spin className="spinner" tip="Loading" size="large" /> : null;
   const errorMessage = error ? (
-    <Alert message="Упс!" description="Что-то пошло нет так, попробуйте снова!=)" type="error" showIcon />
+    <Alert message="Упс!" description="Что-то пошло нет так, попробуйте снова!" type="error" showIcon />
   ) : null;
   const notFoundMessage = notFound ? (
     <Alert
-      message="Ой=("
+      message="Проверьте название фильма"
       description="По вашему запросу ничего не найдено, попробуйте снова!"
       type="warning"
       showIcon
     />
   ) : null;
-  const notRatedMessage = notRatedFilms ? (
-    <Alert message="Оцененных фильмов не найдено" description="Вы еще не оценили ни одного фильма" showIcon />
-  ) : null;
+  const notRatedMessage =
+    Object.keys(ratedIdMovies).length === 0 && !loading && activeKey === 'rated' ? (
+      <Alert message="Оцененных фильмов не найдено" description="Вы еще не оценили ни одного фильма" showIcon />
+    ) : null;
 
   return (
     <>
